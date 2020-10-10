@@ -1,8 +1,9 @@
 {
   "name": "@balgamat/react-autoform-fluent-ui",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "Fluent UI components for @balgamat/react-autoform",
   "main": "dist/index.js",
+  "private": false,
   "scripts": {
     "build": "yarn tsc",
     "test": "jest",
@@ -17,21 +18,27 @@
   "keywords": [
     "typescript",
     "react",
-    "crud"
+    "crud",
+    "autoform",
+    "fluent ui",
+    "components"
   ],
   "author": "balgamat",
   "license": "MIT",
   "homepage": "https://github.com/balgamat/react-autoform-fluent-ui#readme",
   "devDependencies": {
+    "@babel/core": "^7.11.6",
     "@types/jest": "^26.0.14",
     "@types/node": "^13.13.5",
     "@types/ramda": "^0.27.20",
     "@types/react": "^16.9.50",
     "@types/react-router": "^5.1.8",
     "@types/react-router-dom": "^5.1.5",
+    "babel-loader": "^8.1.0",
     "jest": "^26.0.1",
     "prettier": "^2.1.2",
     "pretty-quick": "^3.0.2",
+    "react-is": "^16.13.1",
     "ts-jest": "^26.0.0",
     "typescript": "^3.9.2"
   },
@@ -39,6 +46,7 @@
     "@fluentui/react": "^7.144.2"
   },
   "peerDependencies": {
+    "@balgamat/react-autoform": "^6.1.1",
     "ramda": "^0.27.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
