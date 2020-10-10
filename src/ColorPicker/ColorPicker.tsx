@@ -17,15 +17,22 @@ const LOCALES: Record<string, IColorPickerStrings> = {
 };
 
 export const ColorPicker: FC<
-  InputComponentProps<unknown, string> & { locale: 'cs' | 'en' } & Partial<IColorPickerProps>
-> = ({ onChange, label, value, id, locale = 'en', ...rest }) => (
-  <>
-    <Label htmlFor={id}>{label}</Label>
-    {React.createElement(Component, {
-      ...rest,
-      strings: LOCALES[locale],
-      color: getColorFromString(value) || '#000',
-      onChange: (_, color) => onChange(color.str),
-    })}
-  </>
-);
+  InputComponentProps<string> & Partial<IColorPickerProps & { locale: 'cs' | 'en' }>
+> = ({ onChange, label, value, id, locale = 'en', ...rest }) => {
+  if (!id)
+    throw new Error(
+      'You have to provide `id` prop so that we can correctly add label to the ColorPicker component.',
+    );
+
+  return (
+    <>
+      <Label htmlFor={id}>{label}</Label>
+      {React.createElement(Component, {
+        ...rest,
+        strings: LOCALES[locale],
+        color: getColorFromString(value) || '#000',
+        onChange: (_, color) => onChange(color.str),
+      })}
+    </>
+  );
+};

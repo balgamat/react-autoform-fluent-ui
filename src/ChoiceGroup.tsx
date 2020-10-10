@@ -9,26 +9,42 @@ import { find } from 'ramda';
 
 export type ChoiceGroupProps = InputComponentProps<unknown> &
   Partial<Omit<IChoiceGroupProps, 'options'>> &
-  IOptions<ChoiceGroupOption<any>>;
+  Partial<IOptions<ChoiceGroupOption<any>>>;
 
 export const ChoiceGroup: FC<ChoiceGroupProps> = ({
   onChange,
   options,
-  keyExtractor = o => o,
-  labelExtractor = o => o,
+  keyExtractor = (o) => o,
+  labelExtractor = (o) => o,
   value,
   ...rest
 }) => {
   const selectedKey = keyExtractor(value);
 
-  const choiceGroupOptions = options.map(option => ({
+  if (!options)
+    throw new Error(
+      `You have to provide \`options\` prop.\nYour props: ${JSON.stringify(
+        {
+          onChange,
+          options,
+          keyExtractor,
+          labelExtractor,
+          value,
+          ...rest,
+        },
+        null,
+        2,
+      )}`,
+    );
+
+  const choiceGroupOptions = options.map((option) => ({
     ...option,
     key: option.key || keyExtractor(option.data),
-    text: option.text || labelExtractor(option.value),
+    text: option.text || labelExtractor(option.data),
   }));
 
   return React.createElement(Component, {
-    onChange: (_, option) => option && onChange(find(o => keyExtractor(o) === option.key)),
+    onChange: (_, option) => option && onChange((option as any).data),
     options: choiceGroupOptions,
     selectedKey,
     ...rest,

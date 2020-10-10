@@ -45,7 +45,7 @@
     "@fluentui/react": "^7.144.2"
   },
   "peerDependencies": {
-    "@balgamat/react-autoform": "^6.1.9",
+    "@balgamat/react-autoform": "^6.1.10",
     "ramda": "^0.27.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1"

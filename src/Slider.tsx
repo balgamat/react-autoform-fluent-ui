@@ -3,13 +3,13 @@ import { Slider as Component, ISliderProps } from 'office-ui-fabric-react/lib/Sl
 import * as React from 'react';
 import { FC } from 'react';
 
-export const Slider: FC<InputComponentProps<unknown, number> & Partial<ISliderProps>> = ({
+export const Slider: FC<InputComponentProps<number> & Partial<ISliderProps>> = ({
   onChange,
   value,
   ...rest
 }) =>
   React.createElement(Component, {
+    ...rest,
     value,
     onChange,
-    ...rest,
   });

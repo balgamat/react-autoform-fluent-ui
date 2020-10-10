@@ -1,19 +1,19 @@
 import * as React from 'react';
 import { FC } from 'react';
 import { InputComponentProps } from '@balgamat/react-autoform';
-import { Dropdown as Component, IDropdownProps } from 'office-ui-fabric-react/lib/DropDown';
+// @ts-ignore
+import { Dropdown as Component, IDropdownProps } from 'office-ui-fabric-react/lib/Dropdown';
 import { DropdownOption, IOptions } from './types';
-import { find } from 'ramda';
+import { find, includes } from 'ramda';
 
-export type DropdownProps = InputComponentProps<unknown, any[] | any> &
-  Partial<Omit<IDropdownProps, 'options'>> &
-  IOptions<DropdownOption<any>>;
+export type DropdownProps = InputComponentProps &
+  Partial<Omit<IDropdownProps, 'options' | 'value'> & IOptions<DropdownOption<any>>>;
 
 export const Dropdown: FC<DropdownProps> = ({
   onChange,
   options,
-  keyExtractor = o => o,
-  labelExtractor = o => o,
+  keyExtractor = (o) => o,
+  labelExtractor = (o) => o,
   multiSelect,
   value,
   ...rest
@@ -22,37 +22,37 @@ export const Dropdown: FC<DropdownProps> = ({
     selectedKeys = undefined;
 
   if (!!multiSelect) {
-    selectedKeys = value.map(keyExtractor);
+    selectedKeys = (value || []).map(keyExtractor);
   } else {
     selectedKey = keyExtractor(value);
   }
 
-  const dropdownOptions = (options as IOptions<DropdownOption<any>>['options']).map(option => ({
+  if (!options) throw new Error('You have to provide `options` prop.');
+
+  const dropdownOptions = (options as IOptions<DropdownOption<any>>['options']).map((option) => ({
     ...option,
     key: keyExtractor(option.data),
     text: labelExtractor(option.data),
   }));
 
-  const getOptionByKey = (key: string | number) => (o: any) => keyExtractor(o) === key;
-
   return React.createElement(Component, {
-    // @ts-ignore
     onChange: (_, option) => {
-      if (!option) return;
+      if (option === undefined) return;
 
       if (!!multiSelect) {
         onChange(
-          option.selected
-            ? [...value, find(getOptionByKey(option.key))]
-            : value.filter(getOptionByKey(option.key)),
+          !includes(option.data, value || [])
+            ? [...(value || []), option.data]
+            : (value || []).filter((item: any) => item !== option.data),
         );
       } else {
-        onChange(getOptionByKey(option.key));
+        onChange(option.data);
       }
     },
     options: dropdownOptions,
     selectedKey,
     selectedKeys,
+    multiSelect,
     ...rest,
   });
 };

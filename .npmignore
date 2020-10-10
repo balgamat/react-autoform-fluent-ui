@@ -1,4 +1,7 @@
 .idea
 src/
 index.ts
+*.ts
+*.tsx
+!*.d.ts
 src/types.ts

@@ -4,7 +4,6 @@ import * as React from 'react';
 import { FC } from 'react';
 import cs from './locales/cs.json';
 import en from './locales/en.json';
-import { Label } from 'office-ui-fabric-react/lib/Label';
 
 const LOCALES = {
   en,
@@ -12,16 +11,21 @@ const LOCALES = {
 };
 
 export const DatePicker: FC<
-  InputComponentProps<unknown, Date> & IDatePickerProps & { locale: 'cs' | 'en'; id: string }
-> = ({ onChange, value, label, locale = 'en', strings, id, ...rest }) => (
-  <>
-    <Label htmlFor={id}>{label}</Label>
-    {React.createElement(Component, {
-      id,
-      value,
-      strings: strings || LOCALES[locale] || en,
-      onSelectDate: date => date && onChange(date),
-      ...rest,
-    })}
-  </>
-);
+  InputComponentProps<Date> & Partial<IDatePickerProps & { locale: 'cs' | 'en' }>
+> = ({ onChange, value, label, locale = 'en', strings, ...rest }) =>
+  React.createElement(Component, {
+    formatDate: (date) =>
+      !!date
+        ? date.toLocaleDateString(locale, {
+            weekday: 'long',
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+          })
+        : '',
+    ...rest,
+    label,
+    value,
+    strings: strings || LOCALES[locale] || en,
+    onSelectDate: (date) => date && onChange(date),
+  });

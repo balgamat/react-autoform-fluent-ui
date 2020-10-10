@@ -5,31 +5,31 @@ import { ComboBox as Component, IComboBoxProps } from 'office-ui-fabric-react/li
 import { ComboBoxOption, IOptions } from './types';
 import { find } from 'ramda';
 
-export type ComboBoxProps = InputComponentProps<unknown> &
-  Partial<Omit<IComboBoxProps, 'options'>> &
-  IOptions<ComboBoxOption<any>>;
+export type ComboBoxProps = InputComponentProps &
+  Partial<Omit<IComboBoxProps, 'options' | 'value'> & IOptions<ComboBoxOption<any>>>;
 
 export const ComboBox: FC<ComboBoxProps> = ({
   onChange,
   options,
-  keyExtractor = o => o,
-  labelExtractor = o => o,
+  keyExtractor = (o) => o,
+  labelExtractor = (o) => o,
   value,
   ...rest
 }) => {
   const selectedKey = keyExtractor(value);
 
-  const comboBoxOptions = (options as IOptions<ComboBoxOption<any>>['options']).map(option => ({
+  if (!options) throw new Error('You have to provide `options` prop.');
+
+  const comboBoxOptions = (options as IOptions<ComboBoxOption<any>>['options']).map((option) => ({
     ...option,
     key: keyExtractor(option.data),
     text: labelExtractor(option.data),
   }));
 
   return React.createElement(Component, {
-    // @ts-ignore
-    onChange: (_, option) => option && onChange(find(o => keyExtractor(o) === option.key)),
+    ...rest,
+    onChange: (_, option) => option && onChange(option.data),
     options: comboBoxOptions,
     selectedKey,
-    ...rest,
   });
 };

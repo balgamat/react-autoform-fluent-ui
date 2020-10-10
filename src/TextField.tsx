@@ -3,13 +3,13 @@ import { TextField as Component, ITextFieldProps } from 'office-ui-fabric-react/
 import * as React from 'react';
 import { FC } from 'react';
 
-export const TextField: FC<InputComponentProps<unknown, string> & Partial<ITextFieldProps>> = ({
+export const TextField: FC<InputComponentProps<string> & Partial<ITextFieldProps>> = ({
   onChange,
   value,
   ...rest
 }) =>
   React.createElement(Component, {
-    value,
-    onChange: (_, newValue) => newValue && onChange(newValue),
     ...rest,
+    value,
+    onChange: (_, newValue) => onChange(newValue || ''),
   });

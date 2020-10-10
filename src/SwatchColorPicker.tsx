@@ -9,25 +9,27 @@ import { FC } from 'react';
 import { keys, map, pipe } from 'ramda';
 
 export const SwatchColorPicker: FC<
-  InputComponentProps<unknown, string> &
-    Partial<ISwatchColorPickerProps> & { id: string; colors: { [color: string]: string } }
+  InputComponentProps<string> &
+    Partial<ISwatchColorPickerProps & { id: string; colors: { [color: string]: string } }>
 > = ({ onChange, value, colors, label, id, columnCount = 6, ...rest }) => {
+  if (!colors || !id) throw new Error('You have to provide `colors` and `id` prop.');
+
   const colorCells = pipe(
     keys,
-    map(hex => ({ id: hex, label: colors[hex], color: hex })),
+    map((label) => ({ id: colors[label], label, color: colors[label] })),
   )(colors);
 
   return (
     <>
       <Label htmlFor={id}>{label}</Label>
       {React.createElement(Component, {
+        ...rest,
         id,
         colorCells,
         columnCount,
         isControlled: true,
         selectedId: value,
         onColorChanged: (_, color) => color && onChange(color),
-        ...rest,
       })}
     </>
   );
