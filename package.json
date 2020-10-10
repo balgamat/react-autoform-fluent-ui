@@ -1,6 +1,6 @@
 {
   "name": "@balgamat/react-autoform-fluent-ui",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "Fluent UI components for @balgamat/react-autoform",
   "main": "dist/index.js",
   "private": false,
@@ -45,11 +45,10 @@
     "@fluentui/react": "^7.144.2"
   },
   "peerDependencies": {
-    "@balgamat/react-autoform": "^6.1.6",
+    "@balgamat/react-autoform": "^6.1.9",
     "ramda": "^0.27.1",
     "react": "^16.13.1",
-    "react-dom": "^16.13.1",
-    "react-i18next": "^11.7.3"
+    "react-dom": "^16.13.1"
   },
   "jest": {
     "preset": "ts-jest/presets/js-with-ts"
