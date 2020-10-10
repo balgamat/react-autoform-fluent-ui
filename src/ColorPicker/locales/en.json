@@ -1,0 +1,9 @@
+{
+  "rootAriaLabelFormat": "Color picker, {0} selected.",
+  "hex": "Hex",
+  "red": "Red",
+  "green": "Green",
+  "blue": "Blue",
+  "alpha": "Alpha",
+  "transparency": "Transparency"
+}

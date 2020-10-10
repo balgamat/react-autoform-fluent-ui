@@ -1,15 +1,15 @@
 import { InputComponentProps } from '@balgamat/react-autoform';
-import { Rating as Component, IRatingProps } from 'office-ui-fabric-react/lib/Rating';
+import { Slider as Component, ISliderProps } from 'office-ui-fabric-react/lib/Slider';
 import * as React from 'react';
 import { FC } from 'react';
 
-export const Rating: FC<InputComponentProps<unknown, number> & IRatingProps> = ({
+export const Slider: FC<InputComponentProps<unknown, number> & Partial<ISliderProps>> = ({
   onChange,
   value,
   ...rest
 }) =>
   React.createElement(Component, {
-    rating: value,
-    onChange: (_, rating) => onChange(rating),
+    value,
+    onChange,
     ...rest,
   });

@@ -1,9 +1,15 @@
 import { InputComponentProps } from '@balgamat/react-autoform';
-import { Checkbox as Component, ICheckboxProps } from 'office-ui-fabric-react/lib/Checkbox';
-import React, { FC } from 'react';
+import { Rating as Component, IRatingProps } from 'office-ui-fabric-react/lib/Rating';
+import * as React from 'react';
+import { FC } from 'react';
 
-export const Checkbox: FC<InputComponentProps<any, boolean> & ICheckboxProps> = ({
+export const Rating: FC<InputComponentProps<unknown, number> & Partial<IRatingProps>> = ({
   onChange,
   value,
   ...rest
-}) => React.createElement(Component, { checked: value, onChange: (_, v) => onChange(!v), ...rest });
+}) =>
+  React.createElement(Component, {
+    rating: value,
+    onChange: (_, rating) => onChange(rating as number),
+    ...rest,
+  });

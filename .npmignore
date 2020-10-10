@@ -1,9 +1,4 @@
 .idea
-.
-src/Autoform.tsx
-src/InputComponents.tsx
-src/prepareComputedProps.ts
-src/useAutoform.tsx
-src/validation.ts
+src/
 index.ts
-types.ts
+src/types.ts

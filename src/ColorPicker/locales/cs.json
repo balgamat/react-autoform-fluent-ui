@@ -1,0 +1,15 @@
+{
+  "rootAriaLabelFormat": "Výběr barvy, vybrána {0}.",
+  "hex": "Hex",
+  "red": "Červená",
+  "green": "Zelená",
+  "blue": "Modrá",
+  "alpha": "Alfa kanál",
+  "transparency": "Průhlednost",
+  "alphaAriaLabel": "Posuvník alfa kanálu",
+  "transparencyAriaLabel": "Průhlednost",
+  "hueAriaLabel": "Odstín",
+  "svAriaLabel": "Sytost a jas",
+  "svAriaValueFormat": "Sytost {0}, jas {1}",
+  "svAriaDescription": "Použijte šipky doleva a doprava k nastavení sytosti, a šipky nahoru a dolů k nastavení jasu."
+}

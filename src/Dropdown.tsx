@@ -1,36 +1,58 @@
 import * as React from 'react';
-import { InputComponentProps } from '@balgamat/react-autoform';
-import { ComboBox as Component, IComboBoxProps } from 'office-ui-fabric-react/lib/ComboBox';
-import { ComboBoxOption, IOptions } from './types';
 import { FC } from 'react';
+import { InputComponentProps } from '@balgamat/react-autoform';
+import { Dropdown as Component, IDropdownProps } from 'office-ui-fabric-react/lib/DropDown';
+import { DropdownOption, IOptions } from './types';
+import { find } from 'ramda';
 
-export type ComboBoxProps = InputComponentProps<any> &
-  IComboBoxProps &
-  IOptions<ComboBoxOption<any>, any>;
+export type DropdownProps = InputComponentProps<unknown, any[] | any> &
+  Partial<Omit<IDropdownProps, 'options'>> &
+  IOptions<DropdownOption<any>>;
 
-export const ComboBox: FC<ComboBoxProps> = ({
+export const Dropdown: FC<DropdownProps> = ({
   onChange,
   options,
   keyExtractor = o => o,
   labelExtractor = o => o,
+  multiSelect,
   value,
   ...rest
 }) => {
-  const selectedKey = keyExtractor(value);
+  let selectedKey = undefined,
+    selectedKeys = undefined;
 
-  const comboBoxOptions = (options as IOptions<ComboBoxOption<any>, any>['options']).map(
-    option => ({
-      ...option,
-      key: keyExtractor(option.value),
-      text: labelExtractor(option.value),
-    }),
-  );
+  if (!!multiSelect) {
+    selectedKeys = value.map(keyExtractor);
+  } else {
+    selectedKey = keyExtractor(value);
+  }
+
+  const dropdownOptions = (options as IOptions<DropdownOption<any>>['options']).map(option => ({
+    ...option,
+    key: keyExtractor(option.data),
+    text: labelExtractor(option.data),
+  }));
+
+  const getOptionByKey = (key: string | number) => (o: any) => keyExtractor(o) === key;
 
   return React.createElement(Component, {
     // @ts-ignore
-    onChange: (_, option) => onChange(option && option.value),
-    options: comboBoxOptions,
+    onChange: (_, option) => {
+      if (!option) return;
+
+      if (!!multiSelect) {
+        onChange(
+          option.selected
+            ? [...value, find(getOptionByKey(option.key))]
+            : value.filter(getOptionByKey(option.key)),
+        );
+      } else {
+        onChange(getOptionByKey(option.key));
+      }
+    },
+    options: dropdownOptions,
     selectedKey,
+    selectedKeys,
     ...rest,
   });
 };

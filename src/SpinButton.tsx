@@ -1,15 +1,17 @@
 import { InputComponentProps } from '@balgamat/react-autoform';
-import { Slider as Component, ISliderProps } from 'office-ui-fabric-react/lib/Slider';
+import { SpinButton as Component, ISpinButtonProps } from 'office-ui-fabric-react/lib/SpinButton';
 import * as React from 'react';
 import { FC } from 'react';
 
-export const Slider: FC<InputComponentProps<unknown, number> & ISliderProps> = ({
+export const SpinButton: FC<InputComponentProps<unknown, number> & Partial<ISpinButtonProps>> = ({
   onChange,
   value,
+  step,
   ...rest
 }) =>
   React.createElement(Component, {
     value,
-    onChange,
+    onIncrement: value => onChange(parseInt(value) + (step || 1)),
+    onDecrement: value => onChange(parseInt(value) + (step || 1)),
     ...rest,
   });

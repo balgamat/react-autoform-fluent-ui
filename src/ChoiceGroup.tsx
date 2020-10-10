@@ -4,11 +4,12 @@ import {
   IChoiceGroupProps,
 } from 'office-ui-fabric-react/lib/ChoiceGroup';
 import React, { FC } from 'react';
-import { ChoiceGroupOption, ComboBoxOption, IOptions } from '../types';
+import { ChoiceGroupOption, IOptions } from './types';
+import { find } from 'ramda';
 
-export type ChoiceGroupProps = InputComponentProps<any> &
-  IChoiceGroupProps &
-  IOptions<ChoiceGroupOption<any>, any>;
+export type ChoiceGroupProps = InputComponentProps<unknown> &
+  Partial<Omit<IChoiceGroupProps, 'options'>> &
+  IOptions<ChoiceGroupOption<any>>;
 
 export const ChoiceGroup: FC<ChoiceGroupProps> = ({
   onChange,
@@ -20,16 +21,14 @@ export const ChoiceGroup: FC<ChoiceGroupProps> = ({
 }) => {
   const selectedKey = keyExtractor(value);
 
-  const choiceGroupOptions = (options as IOptions<ChoiceGroupOption<any>, any>['options']).map(
-    option => ({
-      ...option,
-      key: keyExtractor(option.value),
-      text: labelExtractor(option.value),
-    }),
-  );
+  const choiceGroupOptions = options.map(option => ({
+    ...option,
+    key: option.key || keyExtractor(option.data),
+    text: option.text || labelExtractor(option.value),
+  }));
 
   return React.createElement(Component, {
-    onChange: (_, option) => onChange(option && option.value),
+    onChange: (_, option) => option && onChange(find(o => keyExtractor(o) === option.key)),
     options: choiceGroupOptions,
     selectedKey,
     ...rest,

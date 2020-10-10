@@ -1,7 +1,5 @@
-import root from '../src';
-
 describe('Test suite', () => {
   it('Can test', () => {
-    expect(root).toEqual({});
+    expect(1+1).toEqual(2);
   })
 });

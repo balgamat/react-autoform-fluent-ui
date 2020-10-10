@@ -1,44 +1,44 @@
 {
   "months": [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December"
+    "Leden",
+    "Únor",
+    "Březen",
+    "Duben",
+    "Květen",
+    "Červen",
+    "Červenec",
+    "Srpen",
+    "Září",
+    "Říjen",
+    "Listopad",
+    "Prosinec"
   ],
 
   "shortMonths": [
-    "Jan",
-    "Feb",
-    "Mar",
-    "Apr",
-    "May",
-    "Jun",
-    "Jul",
-    "Aug",
-    "Sep",
-    "Oct",
-    "Nov",
-    "Dec"
+    "Led",
+    "Úno",
+    "Bře",
+    "Dub",
+    "Kvě",
+    "Čvn",
+    "Čvc",
+    "Srp",
+    "Zář",
+    "Říj",
+    "Lis",
+    "Pro"
   ],
 
-  "days": ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+  "days": ["Neděle", "Pondělí", "Úterý", "Středa", "Čtvrtek", "Pátek", "Sobota"],
 
-  "shortDays": ["S", "M", "T", "W", "T", "F", "S"],
+  "shortDays": ["Ne", "Po", "Út", "St", "Čt", "Pá", "So"],
 
-  "goToToday": "Go to today",
-  "prevMonthAriaLabel": "Go to previous month",
-  "nextMonthAriaLabel": "Go to next month",
-  "prevYearAriaLabel": "Go to previous year",
-  "nextYearAriaLabel": "Go to next year",
-  "closeButtonAriaLabel": "Close date picker",
-  "monthPickerHeaderAriaLabel": "{0}, select to change the year",
-  "yearPickerHeaderAriaLabel": "{0}, select to change the month"
+  "goToToday": "Dnes...",
+  "prevMonthAriaLabel": "Předchozí měsíc",
+  "nextMonthAriaLabel": "Následující měsíc",
+  "prevYearAriaLabel": "Předchozí rok",
+  "nextYearAriaLabel": "Následující rok",
+  "closeButtonAriaLabel": "Zavřít",
+  "monthPickerHeaderAriaLabel": "{0}, vyberte pro změnu měsíce",
+  "yearPickerHeaderAriaLabel": "{0}, vyberte pro změnu roku"
 }

@@ -1,15 +1,15 @@
 import { InputComponentProps } from '@balgamat/react-autoform';
-import { Rating as Component, IRatingProps } from 'office-ui-fabric-react/lib/Rating';
+import { TextField as Component, ITextFieldProps } from 'office-ui-fabric-react/lib/TextField';
 import * as React from 'react';
 import { FC } from 'react';
 
-export const Rating: FC<InputComponentProps<unknown, number> & IRatingProps> = ({
+export const TextField: FC<InputComponentProps<unknown, string> & Partial<ITextFieldProps>> = ({
   onChange,
   value,
   ...rest
 }) =>
   React.createElement(Component, {
-    rating: value,
-    onChange: (_, rating) => onChange(rating as number),
+    value,
+    onChange: (_, newValue) => newValue && onChange(newValue),
     ...rest,
   });

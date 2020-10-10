@@ -1,9 +1,11 @@
-import { InputComponentProps } from '@balgamat/react-autoform';
+import * as React from 'react';
 import { Checkbox as Component, ICheckboxProps } from 'office-ui-fabric-react/lib/Checkbox';
-import React, { FC } from 'react';
+import { FC } from 'react';
+import { InputComponentProps } from '@balgamat/react-autoform';
 
-export const Checkbox: FC<InputComponentProps<any, boolean> & ICheckboxProps> = ({
+export const Toggle: FC<InputComponentProps<any, boolean> & ICheckboxProps> = ({
   onChange,
   value,
   ...rest
-}) => React.createElement(Component, { checked: value, onChange: (_, v) => onChange(!v), ...rest });
+}) =>
+  React.createElement(Component, { checked: value, onChange: (_, v) => v && onChange(v), ...rest });
