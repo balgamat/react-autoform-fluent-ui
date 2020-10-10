@@ -8,8 +8,7 @@
     "build": "yarn tsc",
     "test": "jest",
     "test:watch": "yarn test -- --watch",
-    "prepublishOnly": "yarn build",
-    "publish": "npm version patch --force"
+    "prepare": "yarn build"
   },
   "repository": {
     "type": "git",
