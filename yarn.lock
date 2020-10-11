@@ -265,10 +265,10 @@
     lodash "^4.17.19"
     to-fast-properties "^2.0.0"
 
-"@balgamat/react-autoform@^6.1.9":
-  version "6.1.9"
-  resolved "https://registry.yarnpkg.com/@balgamat/react-autoform/-/react-autoform-6.1.9.tgz#a6f9615d33fea358c7eba3f26c195a5e12094386"
-  integrity sha512-CiHKe4H1UlmMhHFL2/EV3HcX6naSPVWPviKol40exoBCKpwpq/bfpt/fORqOP7DxEigf0kkwTutnKfyi3pNqPw==
+"@balgamat/react-autoform@^7.0.0":
+  version "7.0.0"
+  resolved "https://registry.yarnpkg.com/@balgamat/react-autoform/-/react-autoform-7.0.0.tgz#ccb8f78cc60c5add0310fb5bd280f7540d1e3d2d"
+  integrity sha512-xhXyCnT5ZtAxAafbU92yqN1j2l2YPjUOMXUtNo1IWNmgciLnhT7zWrMEBubprAGUf1xESHSitmPyDq2+iVYy7g==
   dependencies:
     ramda "^0.26.1"
     yup "^0.29.3"

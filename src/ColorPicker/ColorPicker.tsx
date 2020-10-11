@@ -28,6 +28,7 @@ export const ColorPicker: FC<
     <>
       <Label htmlFor={id}>{label}</Label>
       {React.createElement(Component, {
+        alphaType: 'none',
         ...rest,
         strings: LOCALES[locale],
         color: getColorFromString(value) || '#000',

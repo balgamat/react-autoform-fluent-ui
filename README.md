@@ -145,7 +145,7 @@ const App = () => {
     },
   ];
 
-  const [obj, Form, validationResult] = useAutoform({}, fields);
+  const [obj, Form, validationResult] = useAutoform({ withFields: fields });
 
   return (
     <div>
