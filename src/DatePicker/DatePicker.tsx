@@ -4,7 +4,6 @@ import * as React from 'react';
 import { FC } from 'react';
 import cs from './locales/cs.json';
 import en from './locales/en.json';
-import { is } from 'ramda';
 
 const LOCALES = {
   en,
