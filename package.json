@@ -1,6 +1,6 @@
 {
   "name": "@balgamat/react-autoform-fluent-ui",
-  "version": "1.0.11",
+  "version": "1.0.13",
   "description": "Fluent UI components for @balgamat/react-autoform",
   "main": "dist/index.js",
   "private": false,
@@ -8,7 +8,7 @@
     "build": "yarn tsc",
     "test": "jest",
     "test:watch": "yarn test -- --watch",
-    "prepare": "yarn build"
+    "prepublishOnly": "yarn build"
   },
   "repository": {
     "type": "git",
@@ -45,7 +45,7 @@
     "@fluentui/react": "^7.144.2"
   },
   "peerDependencies": {
-    "@balgamat/react-autoform": "^6.1.10",
+    "@balgamat/react-autoform": "^7.0.0",
     "ramda": "^0.27.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1"
