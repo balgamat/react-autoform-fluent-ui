@@ -1,6 +1,6 @@
 {
   "name": "@balgamat/react-autoform-fluent-ui",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "description": "Fluent UI components for @balgamat/react-autoform",
   "main": "dist/index.js",
   "private": false,

@@ -1,7 +1,9 @@
 .idea
-src/
+./src/
 index.ts
 *.ts
 *.tsx
 !*.d.ts
-src/types.ts
+!*.js
+!*.json
+./src/types.ts
