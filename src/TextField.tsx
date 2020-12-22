@@ -4,12 +4,16 @@ import * as React from 'react';
 import { FC } from 'react';
 
 export const TextField: FC<InputComponentProps<string> & Partial<ITextFieldProps>> = ({
+  error,
   onChange,
   value,
   ...rest
-}) =>
-  React.createElement(Component, {
+}) => {
+  console.log(error);
+  return React.createElement(Component, {
+    errorMessage: 'error',
     ...rest,
     value,
     onChange: (_, newValue) => onChange(newValue || ''),
   });
+};

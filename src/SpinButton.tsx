@@ -6,7 +6,7 @@ import { FC } from 'react';
 
 export const SpinButton: FC<
   InputComponentProps<number> & Partial<Omit<ISpinButtonProps, 'value'>>
-> = ({ onChange, value, step = 1, labelPosition = Position.top, style, ...rest }) =>
+> = ({ error, onChange, value, step = 1, labelPosition = Position.top, style, ...rest }) =>
   React.createElement(Component, {
     ...rest,
     labelPosition,

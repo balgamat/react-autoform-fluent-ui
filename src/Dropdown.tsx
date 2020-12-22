@@ -10,11 +10,12 @@ export type DropdownProps = InputComponentProps &
   Partial<Omit<IDropdownProps, 'options' | 'value'> & IOptions<DropdownOption<any>>>;
 
 export const Dropdown: FC<DropdownProps> = ({
-  onChange,
-  options,
+  error,
   keyExtractor = (o) => o,
   labelExtractor = (o) => o,
   multiSelect,
+  onChange,
+  options,
   value,
   ...rest
 }) => {
@@ -36,6 +37,7 @@ export const Dropdown: FC<DropdownProps> = ({
   }));
 
   return React.createElement(Component, {
+    errorMessage: error,
     onChange: (_, option) => {
       if (option === undefined) return;
 
